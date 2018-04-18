@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		5EC437D320878657005CD779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC437D220878657005CD779 /* AppDelegate.swift */; };
-		5EC437D520878657005CD779 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC437D420878657005CD779 /* ViewController.swift */; };
+		5EC437D520878657005CD779 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC437D420878657005CD779 /* TableViewController.swift */; };
 		5EC437D820878657005CD779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC437D620878657005CD779 /* Main.storyboard */; };
 		5EC437DB20878657005CD779 /* toDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EC437D920878657005CD779 /* toDo.xcdatamodeld */; };
 		5EC437DD20878658005CD779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC437DC20878658005CD779 /* Assets.xcassets */; };
 		5EC437E020878658005CD779 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC437DE20878658005CD779 /* LaunchScreen.storyboard */; };
+		5EC437E820878D95005CD779 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC437E720878D95005CD779 /* DataItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5EC437CF20878657005CD779 /* toDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC437D220878657005CD779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5EC437D420878657005CD779 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5EC437D420878657005CD779 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5EC437D720878657005CD779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EC437DA20878657005CD779 /* toDo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = toDo.xcdatamodel; sourceTree = "<group>"; };
 		5EC437DC20878658005CD779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EC437DF20878658005CD779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EC437E120878658005CD779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EC437E720878D95005CD779 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				5EC437D220878657005CD779 /* AppDelegate.swift */,
-				5EC437D420878657005CD779 /* ViewController.swift */,
+				5EC437E720878D95005CD779 /* DataItem.swift */,
+				5EC437D420878657005CD779 /* TableViewController.swift */,
 				5EC437D620878657005CD779 /* Main.storyboard */,
 				5EC437DC20878658005CD779 /* Assets.xcassets */,
 				5EC437DE20878658005CD779 /* LaunchScreen.storyboard */,
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EC437D520878657005CD779 /* ViewController.swift in Sources */,
+				5EC437D520878657005CD779 /* TableViewController.swift in Sources */,
 				5EC437D320878657005CD779 /* AppDelegate.swift in Sources */,
+				5EC437E820878D95005CD779 /* DataItem.swift in Sources */,
 				5EC437DB20878657005CD779 /* toDo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
