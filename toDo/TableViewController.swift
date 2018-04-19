@@ -19,7 +19,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +41,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,7 +84,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
-
         }
     }
     
@@ -129,7 +126,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func save(name: String) {
-        
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -153,6 +149,5 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
 }
 
