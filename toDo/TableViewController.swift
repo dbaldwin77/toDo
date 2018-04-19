@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var listItem : [DataItem] = [DataItem]()
+   // var listItem : [DataItem] = [DataItem]()
+    var listItem : [NSManagedObject] = []
     
     @IBOutlet weak var tabel_View: UITableView!
     
@@ -17,12 +19,31 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-        for i in 1...20 {
-          
-            listItem.append(DataItem(toDoitem: "To Do list item #\(i)"))
-            }
+
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "NewItem")
+
+        do {
+            listItem = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -39,15 +60,33 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let cell = tabel_View.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             let item = listItem[indexPath.row]
             
-            cell.textLabel?.text = item.toDoitem
-            cell.detailTextLabel?.text = item.toDoitem
+            cell.textLabel?.text = item.value(forKey: "items") as? String
             return cell
         }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
+
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+            
+            managedContext.delete(listItem[indexPath.row])
+            
             listItem.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tabel_View.reloadData()
+
+            do {
+                try managedContext.save()
+              
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+
         }
     }
     
@@ -61,5 +100,59 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
+    @IBAction func addItem(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "TO DO LIST",
+                                      message: "Add To Do Item",
+                                      preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [unowned self] action in
+            
+            guard let textField = alert.textFields?.first,
+                let nameToSave = textField.text else {
+                    return
+            }
+            
+            self.save(name: nameToSave)
+            self.tabel_View.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .default)
+        
+        alert.addTextField()
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func save(name: String) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let entity =
+            NSEntityDescription.entity(forEntityName: "NewItem",
+                                       in: managedContext)!
+        
+        let listItems = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        listItems.setValue(name, forKeyPath: "items")
+        
+        do {
+            try managedContext.save()
+            listItem.append(listItems)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
 }
 

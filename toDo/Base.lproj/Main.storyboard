@@ -59,6 +59,9 @@
                     <navigationItem key="navigationItem" title="TO DO LIST" id="OzM-Ta-fOH">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ex4-FY-7j0">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addItem:" destination="BYZ-38-t0r" id="zXL-nt-mBD"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
